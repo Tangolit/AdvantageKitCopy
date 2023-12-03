@@ -14,8 +14,8 @@ import edu.wpi.first.math.util.Units;
 import frc.robot.subsystems.flywheel.FlywheelIO.FlywheelIOInputs;
 
 public class FlywheelIOTalonFX implements FlywheelIO{
-    private final TalonFX master;
-    private final TalonFX slave;
+    private final TalonFX leader;
+    private final TalonFX follower;
 
     private final StatusSignal<Double> velocity;
     private final StatusSignal<Double> appliedVolts;
@@ -27,18 +27,18 @@ public class FlywheelIOTalonFX implements FlywheelIO{
         config.CurrentLimits.StatorCurrentLimit = 40;
         config.CurrentLimits.StatorCurrentLimitEnable = true;
         config.MotorOutput.NeutralMode = NeutralModeValue.Coast;
-        this.master = new TalonFX(mID);
-        this.slave = new TalonFX(sID);
+        this.leader = new TalonFX(mID);
+        this.follower = new TalonFX(sID);
 
-        slave.setControl(new Follower(master.getDeviceID(), false));
+        follower.setControl(new Follower(leader.getDeviceID(), false));
 
-        master.getConfigurator().apply(config);
-        slave.getConfigurator().apply(config);
+        leader.getConfigurator().apply(config);
+        follower.getConfigurator().apply(config);
 
-        this.velocity = master.getVelocity();
-        this.appliedVolts = master.getMotorVoltage();
-        this.mCurrentAmps = master.getStatorCurrent();
-        this.sCurrentAmps = slave.getStatorCurrent();
+        this.velocity = leader.getVelocity();
+        this.appliedVolts = leader.getMotorVoltage();
+        this.mCurrentAmps = leader.getStatorCurrent();
+        this.sCurrentAmps = follower.getStatorCurrent();
 
         BaseStatusSignal.setUpdateFrequencyForAll(100, velocity, appliedVolts, mCurrentAmps, sCurrentAmps);
     }
@@ -54,17 +54,17 @@ public class FlywheelIOTalonFX implements FlywheelIO{
 
     @Override
     public void setVoltage(double voltage) {
-        master.setControl(new VoltageOut(voltage));
+        leader.setControl(new VoltageOut(voltage));
     }
 
     @Override
     public void setVelocity(double velocity) {
-        master.setControl(new VelocityVoltage(velocity));
+        leader.setControl(new VelocityVoltage(velocity));
     }
 
     @Override 
     public void stop() {
-        master.stopMotor();
+        leader.stopMotor();
     }
 
     @Override
@@ -73,6 +73,6 @@ public class FlywheelIOTalonFX implements FlywheelIO{
         config.kP = kP;
         config.kI = kI;
         config.kD = kD;
-        master.getConfigurator().apply(config);
+        leader.getConfigurator().apply(config);
     }
 }

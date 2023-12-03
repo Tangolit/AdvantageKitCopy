@@ -9,8 +9,8 @@ import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.intake.Intake;
-import frc.robot.subsystems.intake.intakePivotIO;
-import frc.robot.subsystems.intake.intakeRollerIO;
+import frc.robot.subsystems.intake.IntakePivotIOTalonFX;
+import frc.robot.subsystems.intake.IntakeRollerIOTalonFX;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -26,7 +26,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private static final Intake intake = new Intake(new intakePivotIO(0), new intakeRollerIO(1));
+  private static final Intake intake = new Intake(new IntakePivotIOTalonFX(0), new IntakeRollerIOTalonFX(1));
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =

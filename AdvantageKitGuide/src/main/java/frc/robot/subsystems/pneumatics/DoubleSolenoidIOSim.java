@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.simulation.DoubleSolenoidSim;
 
-public class DoubleSolenoidIOSim implements SolenoidIO{
+public class DoubleSolenoidIOSim implements DoubleSolenoidIO{
     DoubleSolenoidSim dSolenoid;
 
     public DoubleSolenoidIOSim (int module, int fChannel, int rChannel) {
@@ -12,7 +12,7 @@ public class DoubleSolenoidIOSim implements SolenoidIO{
     }
 
     @Override
-    public void updateInputs(SolenoidIOInputs inputs) {
+    public void updateInputs(DoubleSolenoidIOInputs inputs) {
         inputs.val = dSolenoid.get();
     }
 

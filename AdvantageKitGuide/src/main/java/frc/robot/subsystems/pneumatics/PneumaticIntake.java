@@ -10,14 +10,14 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class PneumaticIntake extends SubsystemBase {
-  private final intakeDeployIO intakeSolenoid;
-  private final PCMCompressorIO compressor;
-  private final SolenoidIOInputsAutoLogged sInputs = new SolenoidIOInputsAutoLogged();
+  private final DoubleSolenoidIOPCM intakeSolenoid;
+  private final CompressorIOPCM compressor;
+  private final DoubleSolenoidIOInputsAutoLogged sInputs = new DoubleSolenoidIOInputsAutoLogged();
   private final CompressorIOInputsAutoLogged cInputs = new CompressorIOInputsAutoLogged();
 
   private boolean toggle = false;;
   /** Creates a new PneumaticIntake. */
-  public PneumaticIntake(intakeDeployIO intakeSolenoid, PCMCompressorIO compressor) {
+  public PneumaticIntake(DoubleSolenoidIOPCM intakeSolenoid, CompressorIOPCM compressor) {
     this.intakeSolenoid = intakeSolenoid;
     this.compressor = compressor;
   }

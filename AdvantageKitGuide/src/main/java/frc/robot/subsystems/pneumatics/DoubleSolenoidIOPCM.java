@@ -4,15 +4,15 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
-public class intakeDeployIO implements SolenoidIO {
+public class DoubleSolenoidIOPCM implements DoubleSolenoidIO {
     private final DoubleSolenoid dSolenoid;
 
-    public intakeDeployIO (int module, int fChannel, int rChannel) {
+    public DoubleSolenoidIOPCM (int module, int fChannel, int rChannel) {
         dSolenoid = new DoubleSolenoid(module,PneumaticsModuleType.CTREPCM, fChannel, rChannel);
     }
 
     @Override
-    public void updateInputs(SolenoidIOInputs inputs) {
+    public void updateInputs(DoubleSolenoidIOInputs inputs) {
         inputs.val = dSolenoid.get();
     }
 

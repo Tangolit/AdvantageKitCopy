@@ -9,13 +9,13 @@ import org.littletonrobotics.junction.Logger;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
-  private final MotorControllerIO pivot;
-  private final MotorControllerIO roller;
-  private final MotorControllerIOInputsAutoLogged pInputs = new MotorControllerIOInputsAutoLogged();
-  private final MotorControllerIOInputsAutoLogged rInputs = new MotorControllerIOInputsAutoLogged();
+  private final IntakePivotIO pivot;
+  private final IntakeRollerIO roller;
+  private final IntakePivotIOInputsAutoLogged pInputs = new IntakePivotIOInputsAutoLogged();
+  private final IntakeRollerIOInputsAutoLogged rInputs = new IntakeRollerIOInputsAutoLogged();
   
   /** Creates a new Intake. */
-  public Intake(MotorControllerIO pivot, MotorControllerIO roller) {
+  public Intake(IntakePivotIO pivot, IntakeRollerIO roller) {
     this.pivot = pivot;
     this.roller = roller;
   }

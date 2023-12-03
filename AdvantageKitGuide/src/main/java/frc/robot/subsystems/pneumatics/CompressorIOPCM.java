@@ -4,11 +4,11 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import frc.robot.subsystems.pneumatics.CompressorIO.CompressorIOInputs;
 
-public class PCMCompressorIO implements CompressorIO{
+public class CompressorIOPCM implements CompressorIO{
     private final Compressor compressor;
 
 
-    public PCMCompressorIO(int module) {
+    public CompressorIOPCM(int module) {
         compressor  = new Compressor(module, PneumaticsModuleType.CTREPCM);
     }
 
