@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Intake extends SubsystemBase {
   private final MotorControllerIO pivot;
   private final MotorControllerIO roller;
-  private final MotorControllerIOInputsAutoLogged inputs = new MotorControllerIOInputsAutoLogged();
+  private final MotorControllerIOInputsAutoLogged pInputs = new MotorControllerIOInputsAutoLogged();
+  private final MotorControllerIOInputsAutoLogged rInputs = new MotorControllerIOInputsAutoLogged();
   
   /** Creates a new Intake. */
   public Intake(MotorControllerIO pivot, MotorControllerIO roller) {
@@ -21,9 +22,11 @@ public class Intake extends SubsystemBase {
 
   @Override
   public void periodic() {
-    pivot.updateInputs(inputs);
+    pivot.updateInputs(pInputs);
+    roller.updateInputs(rInputs);
 
-    Logger.processInputs("Intake", inputs);
+    Logger.processInputs("Intake Pivot", pInputs);
+    Logger.processInputs("Intake Rollers", rInputs);
     // This method will be called once per scheduler run
   }
 
