@@ -22,11 +22,13 @@ public class Intake extends SubsystemBase {
   @Override
   public void periodic() {
     pivot.updateInputs(inputs);
+
+    Logger.processInputs("Intake", inputs);
     // This method will be called once per scheduler run
   }
 
-  public void runRollers(double veloicty) {
-    roller.setVelocity(veloicty);
+  public void runRollers(double velocity) {
+    roller.setVelocity(velocity);
   }
 
   public void stopRollers() {
