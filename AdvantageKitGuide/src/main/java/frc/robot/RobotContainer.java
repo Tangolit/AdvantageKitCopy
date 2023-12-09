@@ -59,7 +59,8 @@ public class RobotContainer {
     m_driverController.a().onTrue(new InstantCommand(() -> intake.setPosition(1000), intake));
 
     m_driverController.b().onTrue(new InstantCommand(() -> intake.runRollers(2), intake));
-    m_driverController.a().onFalse(new InstantCommand(intake::stopRollers, intake));
+    m_driverController.x().onTrue(new InstantCommand(() -> intake.runRollers(-2), intake));
+    // m_driverController.b().onFalse(new InstantCommand(intake::stopRollers, intake));
   }
 
   /**
